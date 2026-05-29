@@ -1,11 +1,6 @@
 <template>
     <PortfolioLayout>
-        <Head>
-            <title>{{ buildTitle(project.title ?? undefined) }}</title>
-            <meta name="description" :content="buildDescription(project.description ?? undefined)" />
-        </Head>
-
-        <article class="py-24 md:py-32">
+        <article v-if="project" class="py-24 md:py-32">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <a
                     href="/"
@@ -84,16 +79,21 @@
 </template>
 
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { computed, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
 import PortfolioLayout from '@/Layouts/PortfolioLayout.vue';
 import Button from '@/Components/Shared/Button.vue';
 import Icon from '@/Components/Shared/Icon.vue';
 import LazyImage from '@/Components/Shared/LazyImage.vue';
 import { useI18n } from '@/i18n';
 import { useSeo } from '@/Composables/useSeo';
-import type { PortfolioProjectDetailProps } from '@/types/pages';
+import { useProject } from '@/Composables/useProject';
 
-defineProps<PortfolioProjectDetailProps>();
+const route = useRoute();
+const slug = computed(() => route.params.slug as string);
+const { project, testimonials } = useProject(slug);
+
 const { t } = useI18n();
-const { buildTitle, buildDescription } = useSeo();
+const { applySeo } = useSeo();
+watchEffect(() => applySeo(project.value?.title ?? undefined, project.value?.description ?? undefined));
 </script>

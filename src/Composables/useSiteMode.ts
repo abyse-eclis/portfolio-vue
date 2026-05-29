@@ -1,10 +1,12 @@
 import { computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { useRoute } from 'vue-router';
 import type { SiteMode } from '@/types';
 
 export function useSiteMode() {
-    const page = usePage();
-    const siteMode = computed(() => (page.props.siteMode as SiteMode) ?? 'portfolio');
+    const route = useRoute();
+    const siteMode = computed<SiteMode>(() =>
+        route.path.startsWith('/freelance') ? 'freelance' : 'portfolio',
+    );
     const isPortfolio = computed(() => siteMode.value === 'portfolio');
     const isFreelance = computed(() => siteMode.value === 'freelance');
 

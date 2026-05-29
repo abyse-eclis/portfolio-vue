@@ -35,34 +35,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
 import Icon from './Icon.vue';
-import type { SharedProps } from '@/types';
+import { useFlash } from '@/Composables/useFlash';
 
-const page = usePage();
+const { flash, clear } = useFlash();
 const visible = ref(false);
 const message = ref('');
 const kind = ref<'success' | 'error'>('success');
 
-const flash = computed(() => page.props.flash as SharedProps['flash'] | undefined);
-
 watch(
-    () => flash.value,
-    (f) => {
-        if (!f) return;
-        if (f.success) {
+    () => [flash.success, flash.error] as const,
+    ([success, error]) => {
+        if (success) {
             kind.value = 'success';
-            message.value = f.success;
-            visible.value = true;
-            setTimeout(() => { visible.value = false; }, 5000);
-        } else if (f.error) {
+            message.value = success;
+        } else if (error) {
             kind.value = 'error';
-            message.value = f.error;
-            visible.value = true;
-            setTimeout(() => { visible.value = false; }, 5000);
+            message.value = error;
+        } else {
+            return;
         }
+        visible.value = true;
+        // Consume so it doesn't re-fire when another Toast instance mounts.
+        clear();
+        setTimeout(() => { visible.value = false; }, 5000);
     },
-    { immediate: true, deep: true },
+    { immediate: true },
 );
 </script>

@@ -14,8 +14,11 @@ import FreelanceLayout from '@/Layouts/FreelanceLayout.vue';
 import Button from '@/Components/Shared/Button.vue';
 import Icon from '@/Components/Shared/Icon.vue';
 import { useI18n } from '@/i18n';
+import { useSiteMode } from '@/Composables/useSiteMode';
 
-defineProps<{ mode: 'portfolio' | 'freelance' }>();
+// Mode is derived from the route (the thank-you page lives at /contact/...,
+// so it resolves to portfolio — matching the old ResolveSiteMode behaviour).
+const { siteMode: mode } = useSiteMode();
 const { t } = useI18n();
 
 const ThankYouContent = defineComponent({

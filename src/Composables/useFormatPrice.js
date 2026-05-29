@@ -1,0 +1,18 @@
+import { useI18n } from '@/i18n';
+export function useFormatPrice() {
+    const { locale } = useI18n();
+    function format(amount, currency = 'THB') {
+        try {
+            return new Intl.NumberFormat(locale.value === 'th' ? 'th-TH' : 'en-US', {
+                style: 'currency',
+                currency,
+                maximumFractionDigits: 0,
+            }).format(amount);
+        }
+        catch {
+            return `${currency} ${amount.toLocaleString()}`;
+        }
+    }
+    return { format };
+}
+//# sourceMappingURL=useFormatPrice.js.map

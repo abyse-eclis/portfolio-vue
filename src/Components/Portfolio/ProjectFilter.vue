@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from '@/i18n';
 
 const props = defineProps<{
@@ -37,6 +37,8 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const route = useRoute();
+const router = useRouter();
 
 const options = computed(() => [
     { value: null as string | null, label: t('filter.all') },
@@ -48,9 +50,9 @@ function isActive(value: string | null) {
 }
 
 function select(tech: string | null) {
-    router.reload({
-        data: { tech: tech ?? undefined },
-        only: ['projects', 'filters'],
-    });
+    const query = { ...route.query };
+    if (tech) query.tech = tech;
+    else delete query.tech;
+    router.push({ query });
 }
 </script>

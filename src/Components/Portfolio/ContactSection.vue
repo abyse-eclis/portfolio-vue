@@ -29,18 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
 import SectionHeading from '@/Components/Shared/SectionHeading.vue';
 import ContactForm from '@/Components/Shared/ContactForm.vue';
 import Icon from '@/Components/Shared/Icon.vue';
 import { useI18n } from '@/i18n';
-import type { SharedBlock } from '@/types';
+import { useSharedProfile } from '@/Composables/useSharedProfile';
 
 const { t } = useI18n();
-const page = usePage();
-const socialLinks = computed(() => {
-    const shared = page.props.shared as SharedBlock | undefined;
-    return shared?.socialLinks ?? [];
-});
+const { socialLinks } = useSharedProfile();
 </script>

@@ -77,19 +77,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
 import { useSiteMode } from '@/Composables/useSiteMode';
+import { useSharedProfile } from '@/Composables/useSharedProfile';
 import { useI18n } from '@/i18n';
 import Icon from './Icon.vue';
-import type { SharedProps } from '@/types';
 
 const { isPortfolio } = useSiteMode();
 const { t, locale } = useI18n();
-const page = usePage<SharedProps>();
+const { profile: sharedProfile, socialLinks } = useSharedProfile();
 
 const homeUrl = computed(() => isPortfolio.value ? '/' : '/freelance');
-const sharedProfile = computed(() => page.props.shared?.profile);
-const socialLinks    = computed(() => page.props.shared?.socialLinks ?? []);
 const currentYear    = new Date().getFullYear();
 
 type IconName = 'github' | 'linkedin' | 'twitter' | 'facebook' | 'instagram' | 'youtube' | 'mail' | 'globe';

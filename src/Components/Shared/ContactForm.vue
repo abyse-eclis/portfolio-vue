@@ -89,18 +89,25 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { reactive, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import Button from './Button.vue';
 import Icon from './Icon.vue';
 import { useI18n } from '@/i18n';
 import { useSiteMode } from '@/Composables/useSiteMode';
+import { useFlash } from '@/Composables/useFlash';
+import { submitContact } from '@/Composables/useContact';
+import { locale } from '@/Composables/useLocale';
 
 const props = defineProps<{ packageSlug?: string | null }>();
 const { t } = useI18n();
-const { isFreelance } = useSiteMode();
+const { siteMode } = useSiteMode();
+const router = useRouter();
+const { success } = useFlash();
 
-const form = useForm({
+// Plain reactive form that keeps the `.errors` / `.processing` shape the
+// template relied on under Inertia's useForm — markup stays untouched.
+const form = reactive({
     name: '',
     email: '',
     phone: '',
@@ -108,17 +115,71 @@ const form = useForm({
     message: '',
     package_slug: props.packageSlug ?? '',
     website: '',
+    errors: {} as Record<string, string>,
+    processing: false,
 });
 
 watch(() => props.packageSlug, (slug) => {
     form.package_slug = slug ?? '';
 });
 
-function submit() {
-    const url = isFreelance.value ? '/freelance/contact' : '/contact';
-    form.post(url, {
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
+// Client-side mirror of StoreContactRequest. Real enforcement still belongs in
+// the DB / an Edge Function — this is just UX feedback.
+function validate(): boolean {
+    const th = locale.value === 'th';
+    form.errors = {};
+
+    if (!form.name.trim()) {
+        form.errors.name = th ? 'กรุณากรอกชื่อ' : 'Name is required.';
+    }
+    const email = form.email.trim();
+    if (!email) {
+        form.errors.email = th ? 'กรุณากรอกอีเมล' : 'Email is required.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        form.errors.email = th ? 'รูปแบบอีเมลไม่ถูกต้อง' : 'Enter a valid email address.';
+    }
+    if (form.message.trim().length < 10) {
+        form.errors.message = th
+            ? 'ข้อความต้องมีอย่างน้อย 10 ตัวอักษร'
+            : 'Message must be at least 10 characters.';
+    }
+
+    return Object.keys(form.errors).length === 0;
+}
+
+async function submit() {
+    // Honeypot — bots fill the hidden "website" field. Drop silently.
+    if (form.website) return;
+    if (!validate()) return;
+
+    form.processing = true;
+    const { error } = await submitContact({
+        mode: siteMode.value,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        subject: form.subject,
+        message: form.message,
+        package_slug: siteMode.value === 'freelance' ? form.package_slug || null : null,
+        locale: locale.value,
     });
+    form.processing = false;
+
+    if (error) {
+        form.errors.message = error;
+        return;
+    }
+
+    form.name = '';
+    form.email = '';
+    form.phone = '';
+    form.subject = '';
+    form.message = '';
+    form.package_slug = props.packageSlug ?? '';
+
+    // Navigate first, then raise the flash so the Toast on the thank-you page
+    // (a fresh layout instance) is the one that displays it.
+    await router.push('/contact/thank-you');
+    success(t('contact.success'));
 }
 </script>
