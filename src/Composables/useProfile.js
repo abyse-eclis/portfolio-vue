@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { locale } from '@/Composables/useLocale';
 import { useSupabaseImage } from '@/Composables/useSupabaseImage';
 import { tField } from '@/lib/translate';
-const COLUMNS = 'id, name, avatar_path, resume_path, years_experience, ' +
+const COLUMNS = 'id, name_th, name_en, avatar_path, resume_path, years_experience, ' +
     'headline_th, headline_en, bio_th, bio_en, ' +
     'freelance_tagline_th, freelance_tagline_en, freelance_bio_th, freelance_bio_en';
 /**
@@ -37,7 +37,7 @@ export function useProfile() {
         if (!p)
             return null;
         return {
-            name: p.name ?? null,
+            name: tField(p, 'name', locale.value),
             headline: tField(p, 'headline', locale.value),
             bio: tField(p, 'bio', locale.value),
             avatar_url: getPublicUrl(p.avatar_path),
@@ -50,7 +50,7 @@ export function useProfile() {
         if (!p)
             return null;
         return {
-            name: p.name ?? null,
+            name: tField(p, 'name', locale.value),
             tagline: tField(p, 'freelance_tagline', locale.value),
             bio: tField(p, 'freelance_bio', locale.value),
             years_experience: p.years_experience ?? null,

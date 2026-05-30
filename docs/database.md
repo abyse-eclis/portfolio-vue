@@ -54,7 +54,8 @@ erDiagram
 
     profiles {
         bigint id PK
-        string name
+        string name_th
+        string name_en
         string email
         string avatar_path
         text headline_th
@@ -227,7 +228,8 @@ erDiagram
 ```sql
 CREATE TABLE profiles (
     id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(120) NOT NULL,
+    name_th VARCHAR(120) NOT NULL,
+    name_en VARCHAR(120) NOT NULL,
     email VARCHAR(255),
     phone VARCHAR(32),
     avatar_path VARCHAR(500),

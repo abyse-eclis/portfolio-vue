@@ -1,6 +1,6 @@
 <template>
     <AdminLayout>
-        <div class="max-w-3xl">
+        <div class="w-full">
             <h1 class="font-display text-2xl text-white">โปรไฟล์</h1>
             <p class="mt-1 text-sm text-slate-400">ข้อมูลเจ้าของเว็บ (มีได้แถวเดียว)</p>
 
@@ -10,7 +10,8 @@
                 <div class="rounded-2xl border border-white/10 bg-space-800/40 p-5">
                     <h2 class="mb-4 font-display text-lg text-white">ทั่วไป</h2>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <Field label="ชื่อ" required><input v-model="form.name" class="admin-input" /></Field>
+                        <Field label="ชื่อ (TH)" required><input v-model="form.name_th" class="admin-input" /></Field>
+                        <Field label="ชื่อ (EN)" required><input v-model="form.name_en" class="admin-input" /></Field>
                         <Field label="ปีประสบการณ์">
                             <input v-model.number="form.years_experience" type="number" class="admin-input" />
                         </Field>
@@ -72,7 +73,8 @@ const message = ref<{ ok: boolean; text: string } | null>(null);
 const existingId = ref<number | null>(null);
 
 const form = reactive<Record<string, any>>({
-    name: '',
+    name_th: '',
+    name_en: '',
     email: '',
     phone: '',
     avatar_path: null,
@@ -100,7 +102,7 @@ onMounted(async () => {
 });
 
 async function save() {
-    if (!form.name || !form.headline_th || !form.headline_en || !form.bio_th || !form.bio_en) {
+    if (!form.name_th || !form.name_en || !form.headline_th || !form.headline_en || !form.bio_th || !form.bio_en) {
         message.value = { ok: false, text: 'กรุณากรอกช่องที่มีเครื่องหมาย *' };
         return;
     }

@@ -17,7 +17,7 @@ async function load() {
     error.value = null;
     const { data: profile, error: profileError } = await supabase
         .from('profiles')
-        .select('id, name, headline_th, headline_en, avatar_path')
+        .select('id, name_th, name_en, headline_th, headline_en, avatar_path')
         .order('id')
         .limit(1)
         .maybeSingle();
@@ -58,7 +58,7 @@ export function useSharedProfile() {
         if (!p)
             return null;
         return {
-            name: p.name ?? null,
+            name: tField(p, 'name', locale.value),
             headline: tField(p, 'headline', locale.value),
             avatar_url: getPublicUrl(p.avatar_path),
         };

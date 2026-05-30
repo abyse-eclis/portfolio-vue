@@ -8,7 +8,8 @@
 -- ---------------------------------------------------------------------------
 create table if not exists profiles (
     id                    bigint generated always as identity primary key,
-    name                  varchar(120) not null,
+    name_th               varchar(120) not null,
+    name_en               varchar(120) not null,
     email                 varchar(255),
     phone                 varchar(32),
     avatar_path           varchar(500),
