@@ -17,7 +17,7 @@
                 :list-columns="skillColumns"
                 :fields="skillFields"
                 :order-by="{ column: 'sort_order', ascending: true }"
-                :defaults="{ level: 80 }"
+                :defaults="{ proficiency: 'intermediate' }"
             />
         </div>
     </AdminLayout>
@@ -46,7 +46,7 @@ const categoryFields: FieldDef[] = [
 const skillColumns: ListColumn[] = [
     { key: 'icon_path', label: 'ไอคอน', type: 'image' },
     { key: 'name', label: 'ชื่อ' },
-    { key: 'level', label: 'ระดับ' },
+    { key: 'proficiency', label: 'ระดับ' },
     { key: 'sort_order', label: 'ลำดับ' },
 ];
 
@@ -59,7 +59,19 @@ const skillFields: FieldDef[] = [
         relation: { table: 'skill_categories', labelColumns: ['name_en'] },
     },
     { key: 'name', label: 'ชื่อทักษะ', type: 'text', required: true, placeholder: 'Vue.js' },
-    { key: 'level', label: 'ระดับ (0-100)', type: 'number', help: 'ใช้แสดงความยาวแถบทักษะ' },
+    {
+        key: 'proficiency',
+        label: 'ระดับความชำนาญ',
+        type: 'select',
+        required: true,
+        options: [
+            { value: 'basic', label: 'พื้นฐาน' },
+            { value: 'intermediate', label: 'ปานกลาง' },
+            { value: 'advanced', label: 'ดี' },
+            { value: 'expert', label: 'เชี่ยวชาญ' },
+        ],
+        help: 'แสดงเป็นป้ายระดับบนหน้าเว็บ',
+    },
     { key: 'icon_path', label: 'ไอคอน (รูป)', type: 'image', folder: 'skills' },
     { key: 'sort_order', label: 'ลำดับการแสดง', type: 'number' },
 ];

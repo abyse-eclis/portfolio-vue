@@ -16,7 +16,7 @@ const categoryFields = [
 const skillColumns = [
     { key: 'icon_path', label: 'ไอคอน', type: 'image' },
     { key: 'name', label: 'ชื่อ' },
-    { key: 'level', label: 'ระดับ' },
+    { key: 'proficiency', label: 'ระดับ' },
     { key: 'sort_order', label: 'ลำดับ' },
 ];
 const skillFields = [
@@ -28,7 +28,19 @@ const skillFields = [
         relation: { table: 'skill_categories', labelColumns: ['name_en'] },
     },
     { key: 'name', label: 'ชื่อทักษะ', type: 'text', required: true, placeholder: 'Vue.js' },
-    { key: 'level', label: 'ระดับ (0-100)', type: 'number', help: 'ใช้แสดงความยาวแถบทักษะ' },
+    {
+        key: 'proficiency',
+        label: 'ระดับความชำนาญ',
+        type: 'select',
+        required: true,
+        options: [
+            { value: 'basic', label: 'พื้นฐาน' },
+            { value: 'intermediate', label: 'ปานกลาง' },
+            { value: 'advanced', label: 'ดี' },
+            { value: 'expert', label: 'เชี่ยวชาญ' },
+        ],
+        help: 'แสดงเป็นป้ายระดับบนหน้าเว็บ',
+    },
     { key: 'icon_path', label: 'ไอคอน (รูป)', type: 'image', folder: 'skills' },
     { key: 'sort_order', label: 'ลำดับการแสดง', type: 'number' },
 ];
@@ -76,7 +88,7 @@ const __VLS_13 = __VLS_asFunctionalComponent1(__VLS_12, new __VLS_12({
     listColumns: (__VLS_ctx.skillColumns),
     fields: (__VLS_ctx.skillFields),
     orderBy: ({ column: 'sort_order', ascending: true }),
-    defaults: ({ level: 80 }),
+    defaults: ({ proficiency: 'intermediate' }),
 }));
 const __VLS_14 = __VLS_13({
     title: "ทักษะ",
@@ -85,7 +97,7 @@ const __VLS_14 = __VLS_13({
     listColumns: (__VLS_ctx.skillColumns),
     fields: (__VLS_ctx.skillFields),
     orderBy: ({ column: 'sort_order', ascending: true }),
-    defaults: ({ level: 80 }),
+    defaults: ({ proficiency: 'intermediate' }),
 }, ...__VLS_functionalComponentArgsRest(__VLS_13));
 // @ts-ignore
 [categoryColumns, categoryFields, skillColumns, skillFields,];

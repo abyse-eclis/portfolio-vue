@@ -11,10 +11,12 @@ export interface ProfilePortfolio {
     resume_url: string | null;
 }
 
+export type SkillProficiency = 'basic' | 'intermediate' | 'advanced' | 'expert';
+
 export interface SkillItem {
     id: number;
     name: string;
-    level: number;
+    proficiency: SkillProficiency;
     icon_url: string | null;
 }
 

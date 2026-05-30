@@ -7,7 +7,7 @@ import type { SkillCategoryBlock } from '@/types/pages';
 
 const COLUMNS =
     'id, slug, name_th, name_en, icon, sort_order, ' +
-    'skills ( id, name, level, icon_path, sort_order )';
+    'skills ( id, name, proficiency, icon_path, sort_order )';
 
 /** Skill categories with their skills. Mirrors PortfolioController::index. */
 export function useSkills() {
@@ -41,7 +41,7 @@ export function useSkills() {
                 .map((s: Record<string, any>) => ({
                     id: s.id,
                     name: s.name,
-                    level: s.level,
+                    proficiency: s.proficiency,
                     icon_url: getPublicUrl(s.icon_path),
                 })),
         }));
