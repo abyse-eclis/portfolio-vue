@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devfolio.example.com/sitemap.xml

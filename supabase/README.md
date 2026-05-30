@@ -17,10 +17,27 @@ After running these:
 3. Upload images to the `devfolio-public` bucket; store the object key in the
    matching `*_path` column.
 
-## Not covered here (needs an Edge Function)
+## Contact Edge Function (`submit-contact`)
 
-The old Laravel flow also sent a notification email and rate-limited the contact
-form (`throttle:contact`). Those can't be done safely from the browser. When
-ready, add a `submit-contact` Edge Function (service_role insert + email +
-per-IP rate limit) and point `src/Composables/useContact.ts` at it instead of
-the direct `insert`.
+The old Laravel flow sent a notification email and rate-limited the contact form
+(`throttle:contact`) — neither can be done safely from the browser. That logic
+now lives in [`functions/submit-contact/index.ts`](functions/submit-contact/index.ts):
+service_role insert + per-IP rate limit + optional Resend email.
+
+Deploy:
+
+```bash
+supabase functions deploy submit-contact --no-verify-jwt
+
+# Optional email notification (skipped if these are unset):
+supabase secrets set RESEND_API_KEY=...        \
+                     CONTACT_NOTIFY_TO=you@example.com \
+                     CONTACT_NOTIFY_FROM=noreply@yourdomain.com
+# Optional CORS lockdown (defaults to "*"):
+supabase secrets set ALLOWED_ORIGIN=https://yourdomain.com
+```
+
+Then set `VITE_USE_CONTACT_FN=true` in the frontend `.env` so
+`src/Composables/useContact.ts` invokes the function instead of inserting
+directly. (`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` are injected by the
+Edge runtime automatically.)

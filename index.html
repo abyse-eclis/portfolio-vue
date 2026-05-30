@@ -3,7 +3,45 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
         <title>DevFolio</title>
+        <meta
+            name="description"
+            content="Full-stack developer & designer crafting digital experiences."
+        />
+
+        <!-- hreflang — same SPA serves both locales (toggled client-side). -->
+        <link rel="alternate" hreflang="en" href="https://devfolio.example.com/" />
+        <link rel="alternate" hreflang="th" href="https://devfolio.example.com/" />
+        <link rel="alternate" hreflang="x-default" href="https://devfolio.example.com/" />
+
+        <!-- Open Graph / Twitter — defaults; useSeo() updates these per route. -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevFolio" />
+        <meta property="og:title" content="DevFolio" />
+        <meta
+            property="og:description"
+            content="Full-stack developer & designer crafting digital experiences."
+        />
+        <meta property="og:url" content="https://devfolio.example.com/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DevFolio" />
+        <meta
+            name="twitter:description"
+            content="Full-stack developer & designer crafting digital experiences."
+        />
+
+        <!-- JSON-LD Person schema (static fallback; useSeo refines at runtime). -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "DevFolio",
+                "url": "https://devfolio.example.com/",
+                "jobTitle": "Full-stack Developer & Designer",
+                "description": "Full-stack developer & designer crafting digital experiences."
+            }
+        </script>
     </head>
     <body>
         <div id="app"></div>
