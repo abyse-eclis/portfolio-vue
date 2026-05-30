@@ -54,6 +54,7 @@ export interface CertificateCardData {
     image_url: string | null;
     credential_url: string | null;
     issued_at: string | null;
+    orientation: 'landscape' | 'portrait';
 }
 
 export interface TestimonialData {

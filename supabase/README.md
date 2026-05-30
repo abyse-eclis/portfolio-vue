@@ -8,6 +8,7 @@ Supabase Dashboard → SQL Editor (or `psql`):
 | `001_schema.sql`  | Tables + indexes (Postgres translation of the original Laravel migrations) |
 | `002_rls.sql`     | Row Level Security — public read on content, insert-only on `contact_submissions` |
 | `003_storage.sql` | Public storage bucket `devfolio-public` for images/resume |
+| `004_admin.sql`   | Admin panel: certificate `orientation` column + `authenticated` write RLS + storage write policies |
 
 After running these:
 
@@ -16,6 +17,9 @@ After running these:
    loads). Insert with the service_role key / dashboard, which bypasses RLS.
 3. Upload images to the `devfolio-public` bucket; store the object key in the
    matching `*_path` column.
+4. **Admin panel:** after running `004_admin.sql`, create the admin user in
+   Dashboard → Authentication → Users → *Add user* (set email + password,
+   confirm it). Keep public sign-ups disabled. Log in at `/admin/login`.
 
 ## Contact Edge Function (`submit-contact`)
 

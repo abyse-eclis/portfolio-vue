@@ -5,7 +5,7 @@ import { useSupabaseImage } from '@/Composables/useSupabaseImage';
 import { tField } from '@/lib/translate';
 import type { CertificateCardData } from '@/types/pages';
 
-const COLUMNS = 'id, title_th, title_en, issuer, image_path, credential_url, issued_at, sort_order';
+const COLUMNS = 'id, title_th, title_en, issuer, image_path, credential_url, issued_at, orientation, sort_order';
 
 /** Certificates, newest first. Mirrors PortfolioController::index. */
 export function useCertificates() {
@@ -33,6 +33,7 @@ export function useCertificates() {
             image_url: getPublicUrl(c.image_path),
             credential_url: c.credential_url ?? null,
             issued_at: c.issued_at ?? null,
+            orientation: c.orientation === 'portrait' ? 'portrait' : 'landscape',
         }));
 
         loading.value = false;

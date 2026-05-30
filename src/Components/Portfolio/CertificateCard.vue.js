@@ -35,9 +35,9 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.article, __VLS_intrinsics.article)({
 /** @type {__VLS_StyleScopedClasses['hover:border-primary-500/40']} */ ;
 /** @type {__VLS_StyleScopedClasses['transition-colors']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "aspect-[4/3] bg-space-700 relative" },
+    ...{ class: (__VLS_ctx.cert.orientation === 'portrait' ? 'aspect-[3/4]' : 'aspect-[4/3]') },
+    ...{ class: "bg-space-700 relative" },
 });
-/** @type {__VLS_StyleScopedClasses['aspect-[4/3]']} */ ;
 /** @type {__VLS_StyleScopedClasses['bg-space-700']} */ ;
 /** @type {__VLS_StyleScopedClasses['relative']} */ ;
 if (__VLS_ctx.cert.image_url) {
@@ -122,7 +122,7 @@ if (__VLS_ctx.cert.credential_url) {
     }, ...__VLS_functionalComponentArgsRest(__VLS_6));
 }
 // @ts-ignore
-[cert, cert, cert, cert, cert, cert, cert, cert, cert, cert, formatDate, t,];
+[cert, cert, cert, cert, cert, cert, cert, cert, cert, cert, cert, formatDate, t,];
 const __VLS_export = (await import('vue')).defineComponent({
     __typeProps: {},
 });

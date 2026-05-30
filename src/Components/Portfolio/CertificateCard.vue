@@ -1,6 +1,9 @@
 <template>
     <article class="group rounded-2xl overflow-hidden bg-space-800/40 border border-white/5 hover:border-primary-500/40 transition-colors">
-        <div class="aspect-[4/3] bg-space-700 relative">
+        <div
+            :class="cert.orientation === 'portrait' ? 'aspect-[3/4]' : 'aspect-[4/3]'"
+            class="bg-space-700 relative"
+        >
             <LazyImage
                 v-if="cert.image_url"
                 :src="cert.image_url"

@@ -87,3 +87,25 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+/* ─── Admin form inputs ───────────────────────────────────── */
+.admin-input {
+    width: 100%;
+    border-radius: 0.625rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(6, 10, 24, 0.6);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-input::placeholder {
+    color: #64748b;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.25);
+}
