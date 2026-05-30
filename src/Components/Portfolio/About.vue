@@ -7,7 +7,7 @@
 
             <div class="grid lg:grid-cols-12 gap-12 items-start">
                 <div class="lg:col-span-7 space-y-5 text-slate-300 text-lg leading-relaxed">
-                    <p v-if="profile.bio">{{ profile.bio }}</p>
+                    <p v-if="profile.about_bio || profile.bio">{{ profile.about_bio || profile.bio }}</p>
                 </div>
 
                 <div class="lg:col-span-5 grid grid-cols-3 gap-4">

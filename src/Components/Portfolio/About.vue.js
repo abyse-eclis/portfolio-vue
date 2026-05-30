@@ -62,9 +62,9 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 /** @type {__VLS_StyleScopedClasses['text-slate-300']} */ ;
 /** @type {__VLS_StyleScopedClasses['text-lg']} */ ;
 /** @type {__VLS_StyleScopedClasses['leading-relaxed']} */ ;
-if (__VLS_ctx.profile.bio) {
+if (__VLS_ctx.profile.about_bio || __VLS_ctx.profile.bio) {
     __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({});
-    (__VLS_ctx.profile.bio);
+    (__VLS_ctx.profile.about_bio || __VLS_ctx.profile.bio);
 }
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "lg:col-span-5 grid grid-cols-3 gap-4" },
@@ -101,7 +101,7 @@ for (const [stat] of __VLS_vFor((__VLS_ctx.stats))) {
     /** @type {__VLS_StyleScopedClasses['mt-1']} */ ;
     (stat.label);
     // @ts-ignore
-    [profile, profile, stats,];
+    [profile, profile, profile, profile, stats,];
 }
 // @ts-ignore
 [];

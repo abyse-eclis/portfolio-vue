@@ -5,6 +5,7 @@ export interface ProfilePortfolio {
     headline: string | null;
     about_heading: string | null;
     bio: string | null;
+    about_bio: string | null;
     avatar_url: string | null;
     years_experience: number | null;
     resume_url: string | null;

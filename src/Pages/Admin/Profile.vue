@@ -26,25 +26,57 @@
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-white/10 bg-space-800/40 p-5">
-                    <h2 class="mb-4 font-display text-lg text-white">โหมด Portfolio</h2>
-                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <Field label="Headline (TH)" required><input v-model="form.headline_th" class="admin-input" /></Field>
-                        <Field label="Headline (EN)" required><input v-model="form.headline_en" class="admin-input" /></Field>
-                        <Field label="หัวข้อ About (TH)" hint="เว้นว่างได้ — จะใช้ Headline แทน"><input v-model="form.about_heading_th" class="admin-input" /></Field>
-                        <Field label="หัวข้อ About (EN)" hint="เว้นว่างได้ — จะใช้ Headline แทน"><input v-model="form.about_heading_en" class="admin-input" /></Field>
-                        <Field label="Bio (TH)" required wide><textarea v-model="form.bio_th" rows="3" class="admin-input" /></Field>
-                        <Field label="Bio (EN)" required wide><textarea v-model="form.bio_en" rows="3" class="admin-input" /></Field>
+                <div role="tablist" class="flex gap-2 border-b border-white/10">
+                    <button
+                        v-for="tab in tabs"
+                        :key="tab.key"
+                        type="button"
+                        role="tab"
+                        :aria-selected="activeTab === tab.key"
+                        class="-mb-px rounded-t-lg border-b-2 px-4 py-2.5 text-sm font-medium transition"
+                        :class="activeTab === tab.key
+                            ? 'border-primary-400 text-white'
+                            : 'border-transparent text-slate-400 hover:text-slate-200'"
+                        @click="activeTab = tab.key"
+                    >
+                        {{ tab.label }}
+                    </button>
+                </div>
+
+                <div v-show="activeTab === 'portfolio'" class="space-y-6">
+                    <div class="rounded-2xl border border-white/10 bg-space-800/40 p-5">
+                        <h2 class="font-display text-lg text-white">ส่วน Hero</h2>
+                        <p class="mb-4 mt-1 text-xs text-slate-400">หัวข้อใหญ่และคำอธิบายที่แสดงด้านบนสุดของหน้า Portfolio</p>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <Field label="หัวข้อ Hero (TH)" required><input v-model="form.headline_th" class="admin-input" /></Field>
+                            <Field label="หัวข้อ Hero (EN)" required><input v-model="form.headline_en" class="admin-input" /></Field>
+                            <Field label="คำอธิบาย Hero (TH)" required wide><textarea v-model="form.bio_th" rows="3" class="admin-input" /></Field>
+                            <Field label="คำอธิบาย Hero (EN)" required wide><textarea v-model="form.bio_en" rows="3" class="admin-input" /></Field>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 bg-space-800/40 p-5">
+                        <h2 class="font-display text-lg text-white">ส่วน About me</h2>
+                        <p class="mb-4 mt-1 text-xs text-slate-400">หัวข้อและเนื้อหาของส่วนแนะนำตัว แยกจาก Hero</p>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <Field label="หัวข้อ About (TH)" hint="เว้นว่างได้ — จะใช้หัวข้อ Hero แทน"><input v-model="form.about_heading_th" class="admin-input" /></Field>
+                            <Field label="หัวข้อ About (EN)" hint="เว้นว่างได้ — จะใช้หัวข้อ Hero แทน"><input v-model="form.about_heading_en" class="admin-input" /></Field>
+                            <Field label="เนื้อหา About (TH)" hint="เว้นว่างได้ — จะใช้คำอธิบาย Hero แทน" wide><textarea v-model="form.about_bio_th" rows="4" class="admin-input" /></Field>
+                            <Field label="เนื้อหา About (EN)" hint="เว้นว่างได้ — จะใช้คำอธิบาย Hero แทน" wide><textarea v-model="form.about_bio_en" rows="4" class="admin-input" /></Field>
+                        </div>
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-white/10 bg-space-800/40 p-5">
-                    <h2 class="mb-4 font-display text-lg text-white">โหมด Freelance</h2>
-                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <Field label="Tagline (TH)"><input v-model="form.freelance_tagline_th" class="admin-input" /></Field>
-                        <Field label="Tagline (EN)"><input v-model="form.freelance_tagline_en" class="admin-input" /></Field>
-                        <Field label="Bio (TH)" wide><textarea v-model="form.freelance_bio_th" rows="3" class="admin-input" /></Field>
-                        <Field label="Bio (EN)" wide><textarea v-model="form.freelance_bio_en" rows="3" class="admin-input" /></Field>
+                <div v-show="activeTab === 'freelance'" class="space-y-6">
+                    <div class="rounded-2xl border border-white/10 bg-space-800/40 p-5">
+                        <h2 class="font-display text-lg text-white">ส่วน Hero (Freelance)</h2>
+                        <p class="mb-4 mt-1 text-xs text-slate-400">หัวข้อและคำอธิบายที่แสดงบนหน้า Freelance</p>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <Field label="Tagline (TH)"><input v-model="form.freelance_tagline_th" class="admin-input" /></Field>
+                            <Field label="Tagline (EN)"><input v-model="form.freelance_tagline_en" class="admin-input" /></Field>
+                            <Field label="คำอธิบาย (TH)" wide><textarea v-model="form.freelance_bio_th" rows="4" class="admin-input" /></Field>
+                            <Field label="คำอธิบาย (EN)" wide><textarea v-model="form.freelance_bio_en" rows="4" class="admin-input" /></Field>
+                        </div>
                     </div>
                 </div>
 
@@ -74,6 +106,13 @@ const saving = ref(false);
 const message = ref<{ ok: boolean; text: string } | null>(null);
 const existingId = ref<number | null>(null);
 
+type TabKey = 'portfolio' | 'freelance';
+const tabs: { key: TabKey; label: string }[] = [
+    { key: 'portfolio', label: 'Portfolio' },
+    { key: 'freelance', label: 'Freelance' },
+];
+const activeTab = ref<TabKey>('portfolio');
+
 const form = reactive<Record<string, any>>({
     name_th: '',
     name_en: '',
@@ -87,6 +126,8 @@ const form = reactive<Record<string, any>>({
     about_heading_en: '',
     bio_th: '',
     bio_en: '',
+    about_bio_th: '',
+    about_bio_en: '',
     freelance_tagline_th: '',
     freelance_tagline_en: '',
     freelance_bio_th: '',
@@ -107,6 +148,7 @@ onMounted(async () => {
 
 async function save() {
     if (!form.name_th || !form.name_en || !form.headline_th || !form.headline_en || !form.bio_th || !form.bio_en) {
+        activeTab.value = 'portfolio';
         message.value = { ok: false, text: 'กรุณากรอกช่องที่มีเครื่องหมาย *' };
         return;
     }

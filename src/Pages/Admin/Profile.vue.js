@@ -9,6 +9,11 @@ const loading = ref(true);
 const saving = ref(false);
 const message = ref(null);
 const existingId = ref(null);
+const tabs = [
+    { key: 'portfolio', label: 'Portfolio' },
+    { key: 'freelance', label: 'Freelance' },
+];
+const activeTab = ref('portfolio');
 const form = reactive({
     name_th: '',
     name_en: '',
@@ -22,6 +27,8 @@ const form = reactive({
     about_heading_en: '',
     bio_th: '',
     bio_en: '',
+    about_bio_th: '',
+    about_bio_en: '',
     freelance_tagline_th: '',
     freelance_tagline_en: '',
     freelance_bio_th: '',
@@ -41,6 +48,7 @@ onMounted(async () => {
 });
 async function save() {
     if (!form.name_th || !form.name_en || !form.headline_th || !form.headline_en || !form.bio_th || !form.bio_en) {
+        activeTab.value = 'portfolio';
         message.value = { ok: false, text: 'กรุณากรอกช่องที่มีเครื่องหมาย *' };
         return;
     }
@@ -262,6 +270,49 @@ else {
     [form,];
     var __VLS_51;
     __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        role: "tablist",
+        ...{ class: "flex gap-2 border-b border-white/10" },
+    });
+    /** @type {__VLS_StyleScopedClasses['flex']} */ ;
+    /** @type {__VLS_StyleScopedClasses['gap-2']} */ ;
+    /** @type {__VLS_StyleScopedClasses['border-b']} */ ;
+    /** @type {__VLS_StyleScopedClasses['border-white/10']} */ ;
+    for (const [tab] of __VLS_vFor((__VLS_ctx.tabs))) {
+        __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
+            ...{ onClick: (...[$event]) => {
+                    if (!!(__VLS_ctx.loading))
+                        return;
+                    __VLS_ctx.activeTab = tab.key;
+                    // @ts-ignore
+                    [tabs, activeTab,];
+                } },
+            key: (tab.key),
+            type: "button",
+            role: "tab",
+            'aria-selected': (__VLS_ctx.activeTab === tab.key),
+            ...{ class: "-mb-px rounded-t-lg border-b-2 px-4 py-2.5 text-sm font-medium transition" },
+            ...{ class: (__VLS_ctx.activeTab === tab.key
+                    ? 'border-primary-400 text-white'
+                    : 'border-transparent text-slate-400 hover:text-slate-200') },
+        });
+        /** @type {__VLS_StyleScopedClasses['-mb-px']} */ ;
+        /** @type {__VLS_StyleScopedClasses['rounded-t-lg']} */ ;
+        /** @type {__VLS_StyleScopedClasses['border-b-2']} */ ;
+        /** @type {__VLS_StyleScopedClasses['px-4']} */ ;
+        /** @type {__VLS_StyleScopedClasses['py-2.5']} */ ;
+        /** @type {__VLS_StyleScopedClasses['text-sm']} */ ;
+        /** @type {__VLS_StyleScopedClasses['font-medium']} */ ;
+        /** @type {__VLS_StyleScopedClasses['transition']} */ ;
+        (tab.label);
+        // @ts-ignore
+        [activeTab, activeTab,];
+    }
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "space-y-6" },
+    });
+    __VLS_asFunctionalDirective(__VLS_directives.vShow, {})(null, { ...__VLS_directiveBindingRestFields, value: (__VLS_ctx.activeTab === 'portfolio') }, null, null);
+    /** @type {__VLS_StyleScopedClasses['space-y-6']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
         ...{ class: "rounded-2xl border border-white/10 bg-space-800/40 p-5" },
     });
     /** @type {__VLS_StyleScopedClasses['rounded-2xl']} */ ;
@@ -270,12 +321,18 @@ else {
     /** @type {__VLS_StyleScopedClasses['bg-space-800/40']} */ ;
     /** @type {__VLS_StyleScopedClasses['p-5']} */ ;
     __VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({
-        ...{ class: "mb-4 font-display text-lg text-white" },
+        ...{ class: "font-display text-lg text-white" },
     });
-    /** @type {__VLS_StyleScopedClasses['mb-4']} */ ;
     /** @type {__VLS_StyleScopedClasses['font-display']} */ ;
     /** @type {__VLS_StyleScopedClasses['text-lg']} */ ;
     /** @type {__VLS_StyleScopedClasses['text-white']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
+        ...{ class: "mb-4 mt-1 text-xs text-slate-400" },
+    });
+    /** @type {__VLS_StyleScopedClasses['mb-4']} */ ;
+    /** @type {__VLS_StyleScopedClasses['mt-1']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-xs']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-slate-400']} */ ;
     __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
         ...{ class: "grid grid-cols-1 gap-4 sm:grid-cols-2" },
     });
@@ -286,11 +343,11 @@ else {
     const __VLS_54 = Field || Field;
     // @ts-ignore
     const __VLS_55 = __VLS_asFunctionalComponent1(__VLS_54, new __VLS_54({
-        label: "Headline (TH)",
+        label: "หัวข้อ Hero (TH)",
         required: true,
     }));
     const __VLS_56 = __VLS_55({
-        label: "Headline (TH)",
+        label: "หัวข้อ Hero (TH)",
         required: true,
     }, ...__VLS_functionalComponentArgsRest(__VLS_55));
     const { default: __VLS_59 } = __VLS_57.slots;
@@ -300,16 +357,16 @@ else {
     (__VLS_ctx.form.headline_th);
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
-    [form,];
+    [form, activeTab,];
     var __VLS_57;
     const __VLS_60 = Field || Field;
     // @ts-ignore
     const __VLS_61 = __VLS_asFunctionalComponent1(__VLS_60, new __VLS_60({
-        label: "Headline (EN)",
+        label: "หัวข้อ Hero (EN)",
         required: true,
     }));
     const __VLS_62 = __VLS_61({
-        label: "Headline (EN)",
+        label: "หัวข้อ Hero (EN)",
         required: true,
     }, ...__VLS_functionalComponentArgsRest(__VLS_61));
     const { default: __VLS_65 } = __VLS_63.slots;
@@ -324,54 +381,16 @@ else {
     const __VLS_66 = Field || Field;
     // @ts-ignore
     const __VLS_67 = __VLS_asFunctionalComponent1(__VLS_66, new __VLS_66({
-        label: "หัวข้อ About (TH)",
-        hint: "เว้นว่างได้ — จะใช้ Headline แทน",
+        label: "คำอธิบาย Hero (TH)",
+        required: true,
+        wide: true,
     }));
     const __VLS_68 = __VLS_67({
-        label: "หัวข้อ About (TH)",
-        hint: "เว้นว่างได้ — จะใช้ Headline แทน",
+        label: "คำอธิบาย Hero (TH)",
+        required: true,
+        wide: true,
     }, ...__VLS_functionalComponentArgsRest(__VLS_67));
     const { default: __VLS_71 } = __VLS_69.slots;
-    __VLS_asFunctionalElement1(__VLS_intrinsics.input)({
-        ...{ class: "admin-input" },
-    });
-    (__VLS_ctx.form.about_heading_th);
-    /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
-    // @ts-ignore
-    [form,];
-    var __VLS_69;
-    const __VLS_72 = Field || Field;
-    // @ts-ignore
-    const __VLS_73 = __VLS_asFunctionalComponent1(__VLS_72, new __VLS_72({
-        label: "หัวข้อ About (EN)",
-        hint: "เว้นว่างได้ — จะใช้ Headline แทน",
-    }));
-    const __VLS_74 = __VLS_73({
-        label: "หัวข้อ About (EN)",
-        hint: "เว้นว่างได้ — จะใช้ Headline แทน",
-    }, ...__VLS_functionalComponentArgsRest(__VLS_73));
-    const { default: __VLS_77 } = __VLS_75.slots;
-    __VLS_asFunctionalElement1(__VLS_intrinsics.input)({
-        ...{ class: "admin-input" },
-    });
-    (__VLS_ctx.form.about_heading_en);
-    /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
-    // @ts-ignore
-    [form,];
-    var __VLS_75;
-    const __VLS_78 = Field || Field;
-    // @ts-ignore
-    const __VLS_79 = __VLS_asFunctionalComponent1(__VLS_78, new __VLS_78({
-        label: "Bio (TH)",
-        required: true,
-        wide: true,
-    }));
-    const __VLS_80 = __VLS_79({
-        label: "Bio (TH)",
-        required: true,
-        wide: true,
-    }, ...__VLS_functionalComponentArgsRest(__VLS_79));
-    const { default: __VLS_83 } = __VLS_81.slots;
     __VLS_asFunctionalElement1(__VLS_intrinsics.textarea)({
         value: (__VLS_ctx.form.bio_th),
         rows: "3",
@@ -380,20 +399,20 @@ else {
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
     [form,];
-    var __VLS_81;
-    const __VLS_84 = Field || Field;
+    var __VLS_69;
+    const __VLS_72 = Field || Field;
     // @ts-ignore
-    const __VLS_85 = __VLS_asFunctionalComponent1(__VLS_84, new __VLS_84({
-        label: "Bio (EN)",
+    const __VLS_73 = __VLS_asFunctionalComponent1(__VLS_72, new __VLS_72({
+        label: "คำอธิบาย Hero (EN)",
         required: true,
         wide: true,
     }));
-    const __VLS_86 = __VLS_85({
-        label: "Bio (EN)",
+    const __VLS_74 = __VLS_73({
+        label: "คำอธิบาย Hero (EN)",
         required: true,
         wide: true,
-    }, ...__VLS_functionalComponentArgsRest(__VLS_85));
-    const { default: __VLS_89 } = __VLS_87.slots;
+    }, ...__VLS_functionalComponentArgsRest(__VLS_73));
+    const { default: __VLS_77 } = __VLS_75.slots;
     __VLS_asFunctionalElement1(__VLS_intrinsics.textarea)({
         value: (__VLS_ctx.form.bio_en),
         rows: "3",
@@ -402,7 +421,7 @@ else {
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
     [form,];
-    var __VLS_87;
+    var __VLS_75;
     __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
         ...{ class: "rounded-2xl border border-white/10 bg-space-800/40 p-5" },
     });
@@ -412,12 +431,18 @@ else {
     /** @type {__VLS_StyleScopedClasses['bg-space-800/40']} */ ;
     /** @type {__VLS_StyleScopedClasses['p-5']} */ ;
     __VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({
-        ...{ class: "mb-4 font-display text-lg text-white" },
+        ...{ class: "font-display text-lg text-white" },
     });
-    /** @type {__VLS_StyleScopedClasses['mb-4']} */ ;
     /** @type {__VLS_StyleScopedClasses['font-display']} */ ;
     /** @type {__VLS_StyleScopedClasses['text-lg']} */ ;
     /** @type {__VLS_StyleScopedClasses['text-white']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
+        ...{ class: "mb-4 mt-1 text-xs text-slate-400" },
+    });
+    /** @type {__VLS_StyleScopedClasses['mb-4']} */ ;
+    /** @type {__VLS_StyleScopedClasses['mt-1']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-xs']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-slate-400']} */ ;
     __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
         ...{ class: "grid grid-cols-1 gap-4 sm:grid-cols-2" },
     });
@@ -425,19 +450,62 @@ else {
     /** @type {__VLS_StyleScopedClasses['grid-cols-1']} */ ;
     /** @type {__VLS_StyleScopedClasses['gap-4']} */ ;
     /** @type {__VLS_StyleScopedClasses['sm:grid-cols-2']} */ ;
-    const __VLS_90 = Field || Field;
+    const __VLS_78 = Field || Field;
     // @ts-ignore
-    const __VLS_91 = __VLS_asFunctionalComponent1(__VLS_90, new __VLS_90({
-        label: "Tagline (TH)",
+    const __VLS_79 = __VLS_asFunctionalComponent1(__VLS_78, new __VLS_78({
+        label: "หัวข้อ About (TH)",
+        hint: "เว้นว่างได้ — จะใช้หัวข้อ Hero แทน",
     }));
-    const __VLS_92 = __VLS_91({
-        label: "Tagline (TH)",
-    }, ...__VLS_functionalComponentArgsRest(__VLS_91));
-    const { default: __VLS_95 } = __VLS_93.slots;
+    const __VLS_80 = __VLS_79({
+        label: "หัวข้อ About (TH)",
+        hint: "เว้นว่างได้ — จะใช้หัวข้อ Hero แทน",
+    }, ...__VLS_functionalComponentArgsRest(__VLS_79));
+    const { default: __VLS_83 } = __VLS_81.slots;
     __VLS_asFunctionalElement1(__VLS_intrinsics.input)({
         ...{ class: "admin-input" },
     });
-    (__VLS_ctx.form.freelance_tagline_th);
+    (__VLS_ctx.form.about_heading_th);
+    /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
+    // @ts-ignore
+    [form,];
+    var __VLS_81;
+    const __VLS_84 = Field || Field;
+    // @ts-ignore
+    const __VLS_85 = __VLS_asFunctionalComponent1(__VLS_84, new __VLS_84({
+        label: "หัวข้อ About (EN)",
+        hint: "เว้นว่างได้ — จะใช้หัวข้อ Hero แทน",
+    }));
+    const __VLS_86 = __VLS_85({
+        label: "หัวข้อ About (EN)",
+        hint: "เว้นว่างได้ — จะใช้หัวข้อ Hero แทน",
+    }, ...__VLS_functionalComponentArgsRest(__VLS_85));
+    const { default: __VLS_89 } = __VLS_87.slots;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.input)({
+        ...{ class: "admin-input" },
+    });
+    (__VLS_ctx.form.about_heading_en);
+    /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
+    // @ts-ignore
+    [form,];
+    var __VLS_87;
+    const __VLS_90 = Field || Field;
+    // @ts-ignore
+    const __VLS_91 = __VLS_asFunctionalComponent1(__VLS_90, new __VLS_90({
+        label: "เนื้อหา About (TH)",
+        hint: "เว้นว่างได้ — จะใช้คำอธิบาย Hero แทน",
+        wide: true,
+    }));
+    const __VLS_92 = __VLS_91({
+        label: "เนื้อหา About (TH)",
+        hint: "เว้นว่างได้ — จะใช้คำอธิบาย Hero แทน",
+        wide: true,
+    }, ...__VLS_functionalComponentArgsRest(__VLS_91));
+    const { default: __VLS_95 } = __VLS_93.slots;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.textarea)({
+        value: (__VLS_ctx.form.about_bio_th),
+        rows: "4",
+        ...{ class: "admin-input" },
+    });
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
     [form,];
@@ -445,12 +513,84 @@ else {
     const __VLS_96 = Field || Field;
     // @ts-ignore
     const __VLS_97 = __VLS_asFunctionalComponent1(__VLS_96, new __VLS_96({
-        label: "Tagline (EN)",
+        label: "เนื้อหา About (EN)",
+        hint: "เว้นว่างได้ — จะใช้คำอธิบาย Hero แทน",
+        wide: true,
     }));
     const __VLS_98 = __VLS_97({
-        label: "Tagline (EN)",
+        label: "เนื้อหา About (EN)",
+        hint: "เว้นว่างได้ — จะใช้คำอธิบาย Hero แทน",
+        wide: true,
     }, ...__VLS_functionalComponentArgsRest(__VLS_97));
     const { default: __VLS_101 } = __VLS_99.slots;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.textarea)({
+        value: (__VLS_ctx.form.about_bio_en),
+        rows: "4",
+        ...{ class: "admin-input" },
+    });
+    /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
+    // @ts-ignore
+    [form,];
+    var __VLS_99;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "space-y-6" },
+    });
+    __VLS_asFunctionalDirective(__VLS_directives.vShow, {})(null, { ...__VLS_directiveBindingRestFields, value: (__VLS_ctx.activeTab === 'freelance') }, null, null);
+    /** @type {__VLS_StyleScopedClasses['space-y-6']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "rounded-2xl border border-white/10 bg-space-800/40 p-5" },
+    });
+    /** @type {__VLS_StyleScopedClasses['rounded-2xl']} */ ;
+    /** @type {__VLS_StyleScopedClasses['border']} */ ;
+    /** @type {__VLS_StyleScopedClasses['border-white/10']} */ ;
+    /** @type {__VLS_StyleScopedClasses['bg-space-800/40']} */ ;
+    /** @type {__VLS_StyleScopedClasses['p-5']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({
+        ...{ class: "font-display text-lg text-white" },
+    });
+    /** @type {__VLS_StyleScopedClasses['font-display']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-lg']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-white']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
+        ...{ class: "mb-4 mt-1 text-xs text-slate-400" },
+    });
+    /** @type {__VLS_StyleScopedClasses['mb-4']} */ ;
+    /** @type {__VLS_StyleScopedClasses['mt-1']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-xs']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-slate-400']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "grid grid-cols-1 gap-4 sm:grid-cols-2" },
+    });
+    /** @type {__VLS_StyleScopedClasses['grid']} */ ;
+    /** @type {__VLS_StyleScopedClasses['grid-cols-1']} */ ;
+    /** @type {__VLS_StyleScopedClasses['gap-4']} */ ;
+    /** @type {__VLS_StyleScopedClasses['sm:grid-cols-2']} */ ;
+    const __VLS_102 = Field || Field;
+    // @ts-ignore
+    const __VLS_103 = __VLS_asFunctionalComponent1(__VLS_102, new __VLS_102({
+        label: "Tagline (TH)",
+    }));
+    const __VLS_104 = __VLS_103({
+        label: "Tagline (TH)",
+    }, ...__VLS_functionalComponentArgsRest(__VLS_103));
+    const { default: __VLS_107 } = __VLS_105.slots;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.input)({
+        ...{ class: "admin-input" },
+    });
+    (__VLS_ctx.form.freelance_tagline_th);
+    /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
+    // @ts-ignore
+    [form, activeTab,];
+    var __VLS_105;
+    const __VLS_108 = Field || Field;
+    // @ts-ignore
+    const __VLS_109 = __VLS_asFunctionalComponent1(__VLS_108, new __VLS_108({
+        label: "Tagline (EN)",
+    }));
+    const __VLS_110 = __VLS_109({
+        label: "Tagline (EN)",
+    }, ...__VLS_functionalComponentArgsRest(__VLS_109));
+    const { default: __VLS_113 } = __VLS_111.slots;
     __VLS_asFunctionalElement1(__VLS_intrinsics.input)({
         ...{ class: "admin-input" },
     });
@@ -458,47 +598,47 @@ else {
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
     [form,];
-    var __VLS_99;
-    const __VLS_102 = Field || Field;
+    var __VLS_111;
+    const __VLS_114 = Field || Field;
     // @ts-ignore
-    const __VLS_103 = __VLS_asFunctionalComponent1(__VLS_102, new __VLS_102({
-        label: "Bio (TH)",
+    const __VLS_115 = __VLS_asFunctionalComponent1(__VLS_114, new __VLS_114({
+        label: "คำอธิบาย (TH)",
         wide: true,
     }));
-    const __VLS_104 = __VLS_103({
-        label: "Bio (TH)",
+    const __VLS_116 = __VLS_115({
+        label: "คำอธิบาย (TH)",
         wide: true,
-    }, ...__VLS_functionalComponentArgsRest(__VLS_103));
-    const { default: __VLS_107 } = __VLS_105.slots;
+    }, ...__VLS_functionalComponentArgsRest(__VLS_115));
+    const { default: __VLS_119 } = __VLS_117.slots;
     __VLS_asFunctionalElement1(__VLS_intrinsics.textarea)({
         value: (__VLS_ctx.form.freelance_bio_th),
-        rows: "3",
+        rows: "4",
         ...{ class: "admin-input" },
     });
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
     [form,];
-    var __VLS_105;
-    const __VLS_108 = Field || Field;
+    var __VLS_117;
+    const __VLS_120 = Field || Field;
     // @ts-ignore
-    const __VLS_109 = __VLS_asFunctionalComponent1(__VLS_108, new __VLS_108({
-        label: "Bio (EN)",
+    const __VLS_121 = __VLS_asFunctionalComponent1(__VLS_120, new __VLS_120({
+        label: "คำอธิบาย (EN)",
         wide: true,
     }));
-    const __VLS_110 = __VLS_109({
-        label: "Bio (EN)",
+    const __VLS_122 = __VLS_121({
+        label: "คำอธิบาย (EN)",
         wide: true,
-    }, ...__VLS_functionalComponentArgsRest(__VLS_109));
-    const { default: __VLS_113 } = __VLS_111.slots;
+    }, ...__VLS_functionalComponentArgsRest(__VLS_121));
+    const { default: __VLS_125 } = __VLS_123.slots;
     __VLS_asFunctionalElement1(__VLS_intrinsics.textarea)({
         value: (__VLS_ctx.form.freelance_bio_en),
-        rows: "3",
+        rows: "4",
         ...{ class: "admin-input" },
     });
     /** @type {__VLS_StyleScopedClasses['admin-input']} */ ;
     // @ts-ignore
     [form,];
-    var __VLS_111;
+    var __VLS_123;
     if (__VLS_ctx.message) {
         __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
             ...{ class: (__VLS_ctx.message.ok ? 'text-emerald-400' : 'text-rose-400') },
@@ -512,21 +652,21 @@ else {
     });
     /** @type {__VLS_StyleScopedClasses['flex']} */ ;
     /** @type {__VLS_StyleScopedClasses['justify-end']} */ ;
-    const __VLS_114 = Button || Button;
+    const __VLS_126 = Button || Button;
     // @ts-ignore
-    const __VLS_115 = __VLS_asFunctionalComponent1(__VLS_114, new __VLS_114({
+    const __VLS_127 = __VLS_asFunctionalComponent1(__VLS_126, new __VLS_126({
         type: "submit",
         disabled: (__VLS_ctx.saving),
     }));
-    const __VLS_116 = __VLS_115({
+    const __VLS_128 = __VLS_127({
         type: "submit",
         disabled: (__VLS_ctx.saving),
-    }, ...__VLS_functionalComponentArgsRest(__VLS_115));
-    const { default: __VLS_119 } = __VLS_117.slots;
+    }, ...__VLS_functionalComponentArgsRest(__VLS_127));
+    const { default: __VLS_131 } = __VLS_129.slots;
     (__VLS_ctx.saving ? 'กำลังบันทึก…' : 'บันทึก');
     // @ts-ignore
     [message, message, message, saving, saving,];
-    var __VLS_117;
+    var __VLS_129;
 }
 // @ts-ignore
 [];

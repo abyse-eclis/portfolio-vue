@@ -8,6 +8,7 @@ import type { ProfilePortfolio, ProfileFreelance } from '@/types/pages';
 const COLUMNS =
     'id, name_th, name_en, avatar_path, resume_path, years_experience, ' +
     'headline_th, headline_en, about_heading_th, about_heading_en, bio_th, bio_en, ' +
+    'about_bio_th, about_bio_en, ' +
     'freelance_tagline_th, freelance_tagline_en, freelance_bio_th, freelance_bio_en';
 
 /**
@@ -46,6 +47,7 @@ export function useProfile() {
             headline: tField(p, 'headline', locale.value),
             about_heading: tField(p, 'about_heading', locale.value),
             bio: tField(p, 'bio', locale.value),
+            about_bio: tField(p, 'about_bio', locale.value),
             avatar_url: getPublicUrl(p.avatar_path),
             years_experience: p.years_experience ?? null,
             resume_url: getPublicUrl(p.resume_path),
