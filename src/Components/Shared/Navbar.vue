@@ -71,6 +71,17 @@
                 </div>
             </Transition>
         </nav>
+
+        <!-- Scroll / reading progress -->
+        <div
+            class="absolute bottom-0 inset-x-0 h-0.5 origin-left bg-gradient-to-r from-primary-400 to-accent-400"
+            :style="{ transform: `scaleX(${scrollProgress})` }"
+            role="progressbar"
+            aria-label="Scroll progress"
+            :aria-valuenow="Math.round(scrollProgress * 100)"
+            aria-valuemin="0"
+            aria-valuemax="100"
+        />
     </header>
 </template>
 
@@ -88,12 +99,18 @@ const homeUrl = computed(() => isPortfolio.value ? '/' : '/freelance');
 
 const scrolled = ref(false);
 const menuOpen = ref(false);
+const scrollProgress = ref(0);
 
 function onScroll() {
     scrolled.value = window.scrollY > 20;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.value = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }));
+onMounted(() => {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+});
 onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
 const portfolioLinks = computed(() => [

@@ -31,6 +31,8 @@
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <Field label="Headline (TH)" required><input v-model="form.headline_th" class="admin-input" /></Field>
                         <Field label="Headline (EN)" required><input v-model="form.headline_en" class="admin-input" /></Field>
+                        <Field label="หัวข้อ About (TH)" hint="เว้นว่างได้ — จะใช้ Headline แทน"><input v-model="form.about_heading_th" class="admin-input" /></Field>
+                        <Field label="หัวข้อ About (EN)" hint="เว้นว่างได้ — จะใช้ Headline แทน"><input v-model="form.about_heading_en" class="admin-input" /></Field>
                         <Field label="Bio (TH)" required wide><textarea v-model="form.bio_th" rows="3" class="admin-input" /></Field>
                         <Field label="Bio (EN)" required wide><textarea v-model="form.bio_en" rows="3" class="admin-input" /></Field>
                     </div>
@@ -81,6 +83,8 @@ const form = reactive<Record<string, any>>({
     resume_path: '',
     headline_th: '',
     headline_en: '',
+    about_heading_th: '',
+    about_heading_en: '',
     bio_th: '',
     bio_en: '',
     freelance_tagline_th: '',

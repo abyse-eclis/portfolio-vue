@@ -2,7 +2,7 @@
     <section id="about" class="py-20 md:py-28 bg-space-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading :eyebrow="t('about.title')" :centered="false">
-                {{ profile.headline }}
+                {{ profile.about_heading || profile.headline }}
             </SectionHeading>
 
             <div class="grid lg:grid-cols-12 gap-12 items-start">

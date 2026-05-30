@@ -8,10 +8,16 @@ const { t } = useI18n();
 const homeUrl = computed(() => isPortfolio.value ? '/' : '/freelance');
 const scrolled = ref(false);
 const menuOpen = ref(false);
+const scrollProgress = ref(0);
 function onScroll() {
     scrolled.value = window.scrollY > 20;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.value = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
 }
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }));
+onMounted(() => {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+});
 onUnmounted(() => window.removeEventListener('scroll', onScroll));
 const portfolioLinks = computed(() => [
     { key: 'about', href: '#about', label: t('nav.about') },
@@ -295,8 +301,25 @@ if (__VLS_ctx.menuOpen) {
 // @ts-ignore
 [];
 var __VLS_13;
+__VLS_asFunctionalElement1(__VLS_intrinsics.div)({
+    ...{ class: "absolute bottom-0 inset-x-0 h-0.5 origin-left bg-gradient-to-r from-primary-400 to-accent-400" },
+    ...{ style: ({ transform: `scaleX(${__VLS_ctx.scrollProgress})` }) },
+    role: "progressbar",
+    'aria-label': "Scroll progress",
+    'aria-valuenow': (Math.round(__VLS_ctx.scrollProgress * 100)),
+    'aria-valuemin': "0",
+    'aria-valuemax': "100",
+});
+/** @type {__VLS_StyleScopedClasses['absolute']} */ ;
+/** @type {__VLS_StyleScopedClasses['bottom-0']} */ ;
+/** @type {__VLS_StyleScopedClasses['inset-x-0']} */ ;
+/** @type {__VLS_StyleScopedClasses['h-0.5']} */ ;
+/** @type {__VLS_StyleScopedClasses['origin-left']} */ ;
+/** @type {__VLS_StyleScopedClasses['bg-gradient-to-r']} */ ;
+/** @type {__VLS_StyleScopedClasses['from-primary-400']} */ ;
+/** @type {__VLS_StyleScopedClasses['to-accent-400']} */ ;
 // @ts-ignore
-[];
+[scrollProgress, scrollProgress,];
 const __VLS_export = (await import('vue')).defineComponent({});
 export default {};
 //# sourceMappingURL=Navbar.vue.js.map

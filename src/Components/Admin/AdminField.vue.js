@@ -27,10 +27,18 @@ if (__VLS_ctx.required) {
     /** @type {__VLS_StyleScopedClasses['text-rose-400']} */ ;
 }
 var __VLS_0 = {};
+if (__VLS_ctx.hint) {
+    __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
+        ...{ class: "text-xs text-slate-500" },
+    });
+    /** @type {__VLS_StyleScopedClasses['text-xs']} */ ;
+    /** @type {__VLS_StyleScopedClasses['text-slate-500']} */ ;
+    (__VLS_ctx.hint);
+}
 // @ts-ignore
 var __VLS_1 = __VLS_0;
 // @ts-ignore
-[wide, label, required,];
+[wide, label, required, hint, hint,];
 const __VLS_base = (await import('vue')).defineComponent({
     __typeProps: {},
 });

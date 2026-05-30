@@ -17,6 +17,8 @@ create table if not exists profiles (
     -- Portfolio mode
     headline_th           varchar(255) not null,
     headline_en           varchar(255) not null,
+    about_heading_th      varchar(255),
+    about_heading_en      varchar(255),
     bio_th                text not null,
     bio_en                text not null,
 

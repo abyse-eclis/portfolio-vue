@@ -4,9 +4,10 @@
             {{ label }}<span v-if="required" class="text-rose-400"> *</span>
         </label>
         <slot />
+        <p v-if="hint" class="text-xs text-slate-500">{{ hint }}</p>
     </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{ label: string; required?: boolean; wide?: boolean }>();
+defineProps<{ label: string; required?: boolean; wide?: boolean; hint?: string }>();
 </script>

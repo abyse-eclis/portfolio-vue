@@ -43,9 +43,9 @@ const __VLS_2 = __VLS_1({
     centered: (false),
 }, ...__VLS_functionalComponentArgsRest(__VLS_1));
 const { default: __VLS_5 } = __VLS_3.slots;
-(__VLS_ctx.profile.headline);
+(__VLS_ctx.profile.about_heading || __VLS_ctx.profile.headline);
 // @ts-ignore
-[t, profile,];
+[t, profile, profile,];
 var __VLS_3;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "grid lg:grid-cols-12 gap-12 items-start" },

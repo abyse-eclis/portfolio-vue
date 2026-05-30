@@ -3,6 +3,7 @@ import type { SharedProps } from './index';
 export interface ProfilePortfolio {
     name: string | null;
     headline: string | null;
+    about_heading: string | null;
     bio: string | null;
     avatar_url: string | null;
     years_experience: number | null;
