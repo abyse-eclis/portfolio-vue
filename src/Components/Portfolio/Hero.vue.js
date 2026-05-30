@@ -67,61 +67,6 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 });
 /** @type {__VLS_StyleScopedClasses['lg:col-span-7']} */ ;
 /** @type {__VLS_StyleScopedClasses['space-y-6']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.span, __VLS_intrinsics.span)({
-    ...{ class: "\u0069\u006e\u006c\u0069\u006e\u0065\u002d\u0066\u006c\u0065\u0078\u0020\u0069\u0074\u0065\u006d\u0073\u002d\u0063\u0065\u006e\u0074\u0065\u0072\u0020\u0067\u0061\u0070\u002d\u0032\u0020\u0070\u0078\u002d\u0033\u0020\u0070\u0079\u002d\u0031\u0020\u0072\u006f\u0075\u006e\u0064\u0065\u0064\u002d\u0066\u0075\u006c\u006c\u000d\u000a\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0062\u006f\u0072\u0064\u0065\u0072\u0020\u0062\u006f\u0072\u0064\u0065\u0072\u002d\u0065\u006d\u0065\u0072\u0061\u006c\u0064\u002d\u0034\u0030\u0030\u002f\u0033\u0030\u0020\u0062\u0067\u002d\u0065\u006d\u0065\u0072\u0061\u006c\u0064\u002d\u0034\u0030\u0030\u002f\u0031\u0030\u0020\u0074\u0065\u0078\u0074\u002d\u0065\u006d\u0065\u0072\u0061\u006c\u0064\u002d\u0033\u0030\u0030\u0020\u0074\u0065\u0078\u0074\u002d\u0078\u0073\u0020\u0066\u006f\u006e\u0074\u002d\u006d\u0065\u0064\u0069\u0075\u006d" },
-});
-/** @type {__VLS_StyleScopedClasses['inline-flex']} */ ;
-/** @type {__VLS_StyleScopedClasses['items-center']} */ ;
-/** @type {__VLS_StyleScopedClasses['gap-2']} */ ;
-/** @type {__VLS_StyleScopedClasses['px-3']} */ ;
-/** @type {__VLS_StyleScopedClasses['py-1']} */ ;
-/** @type {__VLS_StyleScopedClasses['rounded-full
-']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['']} */ ;
-/** @type {__VLS_StyleScopedClasses['border']} */ ;
-/** @type {__VLS_StyleScopedClasses['border-emerald-400/30']} */ ;
-/** @type {__VLS_StyleScopedClasses['bg-emerald-400/10']} */ ;
-/** @type {__VLS_StyleScopedClasses['text-emerald-300']} */ ;
-/** @type {__VLS_StyleScopedClasses['text-xs']} */ ;
-/** @type {__VLS_StyleScopedClasses['font-medium']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.span)({
-    ...{ class: "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" },
-});
-/** @type {__VLS_StyleScopedClasses['w-1.5']} */ ;
-/** @type {__VLS_StyleScopedClasses['h-1.5']} */ ;
-/** @type {__VLS_StyleScopedClasses['rounded-full']} */ ;
-/** @type {__VLS_StyleScopedClasses['bg-emerald-400']} */ ;
-/** @type {__VLS_StyleScopedClasses['animate-pulse']} */ ;
-(__VLS_ctx.t('hero.availableForWork'));
 __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
     ...{ class: "text-primary-300 font-medium" },
 });
@@ -180,7 +125,7 @@ const __VLS_2 = __VLS_1({
 const { default: __VLS_5 } = __VLS_3.slots;
 (__VLS_ctx.t('button.contactMe'));
 // @ts-ignore
-[t, t, t, profile, profile, profile, profile,];
+[t, t, profile, profile, profile, profile,];
 var __VLS_3;
 if (__VLS_ctx.profile.resume_url) {
     const __VLS_6 = Button || Button;

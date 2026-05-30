@@ -32,7 +32,6 @@ export const th = {
     },
     hero: {
         scrollDown: 'เลื่อนลง',
-        availableForWork: 'พร้อมรับงาน',
         portfolioGreeting: 'สวัสดีครับ ผม',
         freelanceGreeting: 'กำลังหา developer อยู่ใช่ไหม?',
     },

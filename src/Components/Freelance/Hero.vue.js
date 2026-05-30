@@ -37,30 +37,6 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 });
 /** @type {__VLS_StyleScopedClasses['max-w-3xl']} */ ;
 /** @type {__VLS_StyleScopedClasses['space-y-6']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.span, __VLS_intrinsics.span)({
-    ...{ class: "inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 text-xs font-medium" },
-});
-/** @type {__VLS_StyleScopedClasses['inline-flex']} */ ;
-/** @type {__VLS_StyleScopedClasses['items-center']} */ ;
-/** @type {__VLS_StyleScopedClasses['gap-2']} */ ;
-/** @type {__VLS_StyleScopedClasses['px-3']} */ ;
-/** @type {__VLS_StyleScopedClasses['py-1']} */ ;
-/** @type {__VLS_StyleScopedClasses['rounded-full']} */ ;
-/** @type {__VLS_StyleScopedClasses['border']} */ ;
-/** @type {__VLS_StyleScopedClasses['border-emerald-400/30']} */ ;
-/** @type {__VLS_StyleScopedClasses['bg-emerald-400/10']} */ ;
-/** @type {__VLS_StyleScopedClasses['text-emerald-300']} */ ;
-/** @type {__VLS_StyleScopedClasses['text-xs']} */ ;
-/** @type {__VLS_StyleScopedClasses['font-medium']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.span)({
-    ...{ class: "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" },
-});
-/** @type {__VLS_StyleScopedClasses['w-1.5']} */ ;
-/** @type {__VLS_StyleScopedClasses['h-1.5']} */ ;
-/** @type {__VLS_StyleScopedClasses['rounded-full']} */ ;
-/** @type {__VLS_StyleScopedClasses['bg-emerald-400']} */ ;
-/** @type {__VLS_StyleScopedClasses['animate-pulse']} */ ;
-(__VLS_ctx.t('hero.availableForWork'));
 __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
     ...{ class: "text-accent-300 font-medium" },
 });
@@ -120,7 +96,7 @@ const __VLS_8 = __VLS_7({
     size: (16),
 }, ...__VLS_functionalComponentArgsRest(__VLS_7));
 // @ts-ignore
-[t, t, t, profile, profile, profile, profile,];
+[t, t, profile, profile, profile, profile,];
 var __VLS_3;
 const __VLS_11 = Button || Button;
 // @ts-ignore

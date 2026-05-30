@@ -6,14 +6,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-24 md:py-32">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-6">
-                    <span
-                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full
-                               border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 text-xs font-medium"
-                    >
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        {{ t('hero.availableForWork') }}
-                    </span>
-
                     <p class="text-primary-300 font-medium">{{ t('hero.portfolioGreeting') }}</p>
 
                     <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">

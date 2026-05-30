@@ -32,7 +32,6 @@ export const en = {
     },
     hero: {
         scrollDown: 'Scroll Down',
-        availableForWork: 'Available for work',
         portfolioGreeting: "Hi, I'm",
         freelanceGreeting: 'Need a developer?',
     },
@@ -100,7 +99,7 @@ export interface Messages {
         downloadResume: string; backToProjects: string;
     };
     hero: {
-        scrollDown: string; availableForWork: string;
+        scrollDown: string;
         portfolioGreeting: string; freelanceGreeting: string;
     };
     about: {

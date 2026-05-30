@@ -32,7 +32,6 @@ export const en = {
     },
     hero: {
         scrollDown: 'Scroll Down',
-        availableForWork: 'Available for work',
         portfolioGreeting: "Hi, I'm",
         freelanceGreeting: 'Need a developer?',
     },
